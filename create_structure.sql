@@ -1,2 +1,27 @@
 create schema if not exists university_engineering_economics;
-SET search_path TO university_engineering_economics;
+
+CREATE TYPE training AS ENUM ('бюджетник', 'частник');
+
+create table faculty
+(
+    id    smallserial PRIMARY KEY,
+    name  varchar(20) not null unique,
+    price money check (cast(price as numeric) >= 0)
+);
+
+create table course
+(
+    id         smallserial PRIMARY KEY,
+    number     smallint not null check ( number > 0 ),
+    id_faculty smallint REFERENCES faculty (id)
+);
+
+create table students
+(
+    id            bigserial PRIMARY KEY,
+    name          varchar(20) not null,
+    patronymic    varchar(20),
+    last_name     varchar(20) not null,
+    type_training training    not null,
+    id_course     smallint REFERENCES course (id)
+);
