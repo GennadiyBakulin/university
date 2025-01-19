@@ -1,12 +1,13 @@
 SET search_path TO university_engineering_economics;
-insert into faculty (name, price)
-VALUES ('Инженерный', 30000.00),
-       ('Экономический', 49000.00);
 
-insert into course (number, id_faculty)
-VALUES (1, 1),
-       (1, 2),
-       (4, 2);
+insert into faculty (id, name, price)
+VALUES (1, 'Инженерный', 30000.00),
+       (2, 'Экономический', 49000.00);
+
+insert into course (id, number, id_faculty)
+VALUES (1, 1, 1),
+       (2, 1, 2),
+       (3, 4, 2);
 
 insert into students (name, patronymic, last_name, type_training, id_course)
 VALUES ('Петр', 'Петрович', 'Петров', 'бюджетник', 1),
